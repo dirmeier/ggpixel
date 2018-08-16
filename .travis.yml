@@ -1,0 +1,25 @@
+language: r
+
+cache: packages
+matrix:
+  include:
+    - os: osx
+      r: release
+    - os: linux
+      r: release
+
+env:
+  global:
+    - r_build_args="--no-build-vignettes --no-manual"
+    - r_check_args="--no-build-vignettes --no-manual --as-cran"
+    - LINTR_COMMENT_BOT=false
+
+r_packages:
+  - covr
+  - rmarkdown
+  - testthat
+  - lintr
+
+after_success:
+  - Rscript -e 'covr::codecov()'
+  - Rscript -e 'lintr::lint_package()'

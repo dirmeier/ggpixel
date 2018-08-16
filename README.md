@@ -1,11 +1,31 @@
-# pixelmap
+# pixelmap <img src="https://rawgit.com/dirmeier/pixelmap/master/inst/fig/pixelmap.png" align="right" width="160px"/>
 
-The goal of pixelmap is to ...
+[![Project Status](http://www.repostatus.org/badges/latest/concept.svg)](http://www.repostatus.org/#concept)
+[![Project Life](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Build Status](https://travis-ci.org/dirmeier/pixelmap.svg?branch=master)](https://travis-ci.org/dirmeier/pixelmap)
+[![codecov](https://codecov.io/gh/dirmeier/pixelmap/branch/master/graph/badge.svg)](https://codecov.io/gh/dirmeier/pixelmap)
+[![CRAN](http://cranlogs.r-pkg.org/badges/pixelmap)](https://cran.r-project.org/package=pixelmap) 
 
-## Example
+Write words on tiles using ggplot.
 
-This is a basic example which shows you how to solve a common problem:
+## Introduction
 
-``` r
-## basic example code
+This package has one function and one purpose only: drawing words on tiles! It.Is.Awesome!
+
+<div align="center">
+  <img src="https://rawgit.com/dirmeier/pixelmap/master/_fig/oh_yeah.png" alt="Drawing" width="400px" />
+  <img src="https://rawgit.com/dirmeier/pixelmap/master/_fig/heaven.png" alt="Drawing" width="400px" />
+  <img src="https://rawgit.com/dirmeier/pixelmap/master/_fig/useful.png" alt="Drawing" width="400px" />
+</div>
+
+## Installation
+
+Installation is, as usual, with `devtools`:
+
+```R
+  devtools::install_github("dirmeier/pixelmap")
 ```
+
+## Author
+
+* Simon Dirmeier <a href="mailto:simon.dirmeier@web.de">simon.dirmeier@web.de</a>
