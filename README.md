@@ -12,6 +12,10 @@ Write words on tiles using ggplot.
 ## Introduction
 
 This package has one function and one purpose only: drawing words on tiles! It.Is.Awesome!
+The usage is straightforward:
+```r
+  pixelmap("hello there! general kenobi!")
+```
 
 <div align="center">
   <img src="https://rawgit.com/dirmeier/pixelmap/master/_fig/oh_yeah.png" alt="Drawing" width="400px" />
