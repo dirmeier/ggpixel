@@ -4,7 +4,8 @@
 [![Project Life](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Build Status](https://travis-ci.org/dirmeier/pixelmap.svg?branch=master)](https://travis-ci.org/dirmeier/pixelmap)
 [![codecov](https://codecov.io/gh/dirmeier/pixelmap/branch/master/graph/badge.svg)](https://codecov.io/gh/dirmeier/pixelmap)
-[![CRAN](http://cranlogs.r-pkg.org/badges/pixelmap)](https://cran.r-project.org/package=pixelmap) 
+[![CRAN](http://www.r-pkg.org/badges/version/pixelmap)](https://cran.r-project.org/package=pixelmap) 
+[![CRAN dowbkiad](http://cranlogs.r-pkg.org/badges/pixelmap)](https://cran.r-project.org/package=pixelmap) 
 
 Write words on tiles using ggplot.
 
