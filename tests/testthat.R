@@ -18,13 +18,7 @@
 # along with ggpixel If not, see <http://www.gnu.org/licenses/>.
 
 
-#' ggpixel
-#'
-#' \emph{ggpixel} is a package that basically plots words or scentences on
-#'  a \code{ggplot2} tile plot.
-#'
-#' @name ggpixel-package
-#' @author Simon Dirmeier | \email{simon.dirmeier@@web.de}
-#' @docType package
-#' @keywords package
-#'
+library(testthat)
+library(ggpixel)
+
+test_check("ggpixel")

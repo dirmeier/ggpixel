@@ -1,4 +1,4 @@
-# pixelmap <img src="https://rawgit.com/dirmeier/pixelmap/master/inst/fig/pixelmap.png" align="right" width="160px"/>
+# ggpixel <img src="https://rawgit.com/dirmeier/ggpixel/master/inst/fig/ggpixel.png" align="right" width="160px"/>
 
 [![Project Status](http://www.repostatus.org/badges/latest/concept.svg)](http://www.repostatus.org/#concept)
 [![Project Life](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
@@ -14,17 +14,17 @@ Write words on tiles using ggplot.
 This package has one function and one purpose only: drawing words on tiles! It.Is.Awesome!
 The usage is straightforward:
 ```r
-  pixelmap("hello there! general kenobi!")
+  ggpixel("hello there! general kenobi!")
 ```
 
 <div align="center">
-  <img src="https://rawgit.com/dirmeier/pixelmap/master/_fig/oh_yeah.png" alt="Drawing" width="400px" />
+  <img src="https://rawgit.com/dirmeier/ggpixel/master/_fig/oh_yeah.png" alt="Drawing" width="400px" />
 </div>
 <div align="center">  
-  <img src="https://rawgit.com/dirmeier/pixelmap/master/_fig/heaven.png" alt="Drawing" width="400px" />
+  <img src="https://rawgit.com/dirmeier/ggpixel/master/_fig/heaven.png" alt="Drawing" width="400px" />
 </div>
 <div align="center">
-  <img src="https://rawgit.com/dirmeier/pixelmap/master/_fig/useful.png" alt="Drawing" width="400px" />
+  <img src="https://rawgit.com/dirmeier/ggpixel/master/_fig/useful.png" alt="Drawing" width="400px" />
 </div>
 
 ## Installation
@@ -32,7 +32,7 @@ The usage is straightforward:
 Installation is, as usual, with `devtools`:
 
 ```R
-  devtools::install_github("dirmeier/pixelmap")
+  devtools::install_github("dirmeier/ggpixel")
 ```
 
 ## Author

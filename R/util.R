@@ -1,21 +1,21 @@
-# pixelmap: write words on tiles
+# ggpixel: write words on tiles
 #
 # Copyright (C) 2018 Simon Dirmeier
 #
-# This file is part of pixelmap
+# This file is part of ggpixel
 #
-# pixelmap is free software: you can redistribute it and/or modify
+# ggpixel is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# pixelmap is distributed in the hope that it will be useful,
+# ggpixel is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with pixelmap If not, see <http://www.gnu.org/licenses/>.
+# along with ggpixel If not, see <http://www.gnu.org/licenses/>.
 
 
 #' @noRd
@@ -48,8 +48,8 @@ build.matrix <- function(x,
              matrix(0, margin.bottom, ncol(m)))
 
   m.idx    <- m == 1
-  m[,]     <- stats::rnorm(length(m), 5, 1)
-  m[m.idx] <- stats::rnorm(sum(m.idx), 5 + noise.difference, .5)
+  m[,]     <- stats::rnorm(length(m), 0, 1)
+  m[m.idx] <- stats::rnorm(sum(m.idx), noise.difference, .5)
 
   m
 }
@@ -59,11 +59,11 @@ build.matrix <- function(x,
 get.letter <- function(symbol)
 {
   idx <- get.index(symbol)
-  if (!idx %in% names(pixelmap::font) && idx != " ") {
-     stop(paste0(symbol, " could not be found in the font!"))
+  if (!idx %in% names(font) && idx != " ") {
+     stop(paste0(symbol, " could not be found in the font!"), call. = FALSE)
   }
 
-  pixelmap:::font[[idx]]
+  ggpixel:::font[[idx]]
 }
 
 

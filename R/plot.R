@@ -1,28 +1,29 @@
-# pixelmap: write words on tiles
+# ggpixel: write words on tiles
 #
 # Copyright (C) 2018 Simon Dirmeier
 #
-# This file is part of pixelmap
+# This file is part of ggpixel
 #
-# pixelmap is free software: you can redistribute it and/or modify
+# ggpixel is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# pixelmap is distributed in the hope that it will be useful,
+# ggpixel is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with pixelmap If not, see <http://www.gnu.org/licenses/>.
+# along with ggpixel If not, see <http://www.gnu.org/licenses/>.
 
 
 
-#' @title Plot a wort on tiles
+#' @title Plot a word on tiles
 #'
-#' @description The method takes a string and translates it into a plot
-#'  using \code{ggplot2}
+#' @description The method takes a string and translates it into a tile plot
+#'  using \code{ggplot2}. The resulting lpot looks like a heamtap with a string
+#'  engraved.
 #'
 #' @export
 #'
@@ -47,11 +48,11 @@
 #'
 #' @examples
 #' \dontrun{
-#'   obiwan <- pixelmap("hello there!")
+#'   obiwan <- ggpixel("hello there!")
 #'
-#'   grievous <- pixelmap("general kenobi!", 3, "magma", 10, 10, 10, 10)
+#'   grievous <- ggpixel("general kenobi!", 3, "magma", 10, 10, 10, 10)
 #' }
-pixelmap <- function(
+ggpixel <- function(
   x,
   noise.difference = 5,
   color.palette    = c("viridis", "magma", "plasma", "inferno"),
@@ -64,12 +65,13 @@ pixelmap <- function(
   color            = "grey30",
   aspect.ratio     = .1)
 {
-  UseMethod("pixelmap")
+  UseMethod("ggpixel")
 }
 
+
 #' @export
-#' @method pixelmap character
-pixelmap.character  <- function(
+#' @method ggpixel character
+ggpixel.character  <- function(
   x,
   noise.difference = 5,
   color.palette    = c("viridis", "magma", "plasma", "inferno"),
@@ -84,7 +86,7 @@ pixelmap.character  <- function(
 {
 
   m <- build.matrix(x, noise.difference, margin.left, margin.right,
-                     margin.top, margin.bottom, letter.spacing)
+                    margin.top, margin.bottom, letter.spacing)
 
   color.palette <- match.arg(color.palette)
   col.option <- switch(
@@ -93,10 +95,10 @@ pixelmap.character  <- function(
     "inferno" = "B",
     "plasma"  = "C",
     "viridis" = "D",
-    stop("Please choose either magma/plasma/inferno/viridis!")
+    stop("Please choose either magma/plasma/inferno/viridis!", call. = FALSE)
   )
 
-  .plot.matrix(m, na.value, color, aspect.ratio, col.option)
+  .ggpixel(m, na.value, color, aspect.ratio, col.option)
 }
 
 
@@ -105,7 +107,7 @@ pixelmap.character  <- function(
 #' @importFrom dplyr mutate
 #' @importFrom reshape2 melt
 #' @importFrom rlang .data
-.plot.matrix <-  function(m,
+.ggpixel <-  function(m,
                           na.value     = "white",
                           color        = "grey30",
                           aspect.ratio = .1,
@@ -118,6 +120,6 @@ pixelmap.character  <- function(
       .data$Var2, .data$Var1, fill = .data$value), color = color) +
     ggplot2::theme_void() +
     viridis::scale_fill_viridis(option = col.option, na.value = na.value) +
-    ggplot2::theme(aspect.ratio = aspect.ratio)+
+    ggplot2::theme(aspect.ratio = aspect.ratio) +
     ggplot2::guides(fill = FALSE)
 }
