@@ -19,41 +19,74 @@
 
 
 
+#' @title Plot a wort on tiles
+#'
+#' @description The method takes a string and translates it into a plot
+#'  using \code{ggplot2}
+#'
 #' @export
-pixelmap <- function(x,
-                     noise.difference=3,
-                     color.palette  = "viridis",
-                     margin.left    = 5,
-                     margin.right   = 5,
-                     margin.top     = 10,
-                     margin.bottom  = 10,
-                     letter.spacing = 3,
-                     na.value       = "white",
-                     color          = "grey30",
-                     aspect.ratio   = .1)
+#'
+#' @param x  a \code{character} vector
+#' @param noise.difference \code{numeric} value that is added to the letter
+#'   tiles in order to create a contrast. The higher the stronger the contrast.
+#' @param color.palette  obviously the colorpalette.
+#'   One of the viridis colors.
+#' @param margin.left how many pixels are inserted to the left from the string
+#' @param margin.right how many pixels are inserted to the right
+#'   from the string
+#' @param margin.top how many pixels are inserted to the top  from the string
+#' @param margin.bottom how many pixels are inserted to the bottom
+#'   from the string
+#' @param letter.spacing  how many pixels are used for spacing two characters
+#' @param na.value color used for NAs
+#' @param color color used for the lines separating the tiles
+#' @param aspect.ratio \code{ggplot2} \code{aspect.ratio} parameter. Modifies
+#'   the dimensions of the tiles.
+#'
+#' @return returns a \code{ggplot} object
+#'
+#' @examples
+#' \dontrun{
+#'   obiwan <- pixelmap("hello there!")
+#'
+#'   grievous <- pixelmap("general kenobi!", 3, "magma", 10, 10, 10, 10)
+#' }
+pixelmap <- function(
+  x,
+  noise.difference = 5,
+  color.palette    = c("viridis", "magma", "plasma", "inferno"),
+  margin.left      = 5,
+  margin.right     = 5,
+  margin.top       = 10,
+  margin.bottom    = 10,
+  letter.spacing   = 3,
+  na.value         = "white",
+  color            = "grey30",
+  aspect.ratio     = .1)
 {
   UseMethod("pixelmap")
 }
 
-
 #' @export
 #' @method pixelmap character
-pixelmap.character  <- function(x,
-                                noise.difference = 5,
-                                color.palette    = "viridis",
-                                margin.left      = 5,
-                                margin.right     = 5,
-                                margin.top       = 10,
-                                margin.bottom    = 10,
-                                letter.spacing   = 3,
-                                na.value         = "white",
-                                color            = "grey30",
-                                aspect.ratio     = .1)
+pixelmap.character  <- function(
+  x,
+  noise.difference = 5,
+  color.palette    = c("viridis", "magma", "plasma", "inferno"),
+  margin.left      = 5,
+  margin.right     = 5,
+  margin.top       = 10,
+  margin.bottom    = 10,
+  letter.spacing   = 3,
+  na.value         = "white",
+  color            = "grey30",
+  aspect.ratio     = .1)
 {
 
   m <- build.matrix(x, noise.difference, margin.left, margin.right,
                      margin.top, margin.bottom, letter.spacing)
 
+  color.palette <- match.arg(color.palette)
   col.option <- switch(
     color.palette,
     "magma"   = "A",
@@ -71,6 +104,7 @@ pixelmap.character  <- function(x,
 #' @importFrom viridis scale_fill_viridis
 #' @importFrom dplyr mutate
 #' @importFrom reshape2 melt
+#' @importFrom rlang .data
 .plot.matrix <-  function(m,
                           na.value     = "white",
                           color        = "grey30",
@@ -78,9 +112,10 @@ pixelmap.character  <- function(x,
                           col.option    = "D")
 {
   reshape2::melt(m) %>%
-    dplyr::mutate(Var1 = factor(Var1, level=rev(unique(Var1)))) %>%
+    dplyr::mutate("Var1" = factor(.data$Var1, level=rev(unique(.data$Var1)))) %>%
     ggplot2::ggplot() +
-    ggplot2::geom_tile(ggplot2::aes(Var2, Var1, fill=value), color = color) +
+    ggplot2::geom_tile(ggplot2::aes(
+      .data$Var2, .data$Var1, fill = .data$value), color = color) +
     ggplot2::theme_void() +
     viridis::scale_fill_viridis(option = col.option, na.value = na.value) +
     ggplot2::theme(aspect.ratio = aspect.ratio)+

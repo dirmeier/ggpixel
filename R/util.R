@@ -59,7 +59,7 @@ build.matrix <- function(x,
 get.letter <- function(symbol)
 {
   idx <- get.index(symbol)
-  if (!idx %in% names(pixelmap:::font) && idx != " ") {
+  if (!idx %in% names(pixelmap::font) && idx != " ") {
      stop(paste0(symbol, " could not be found in the font!"))
   }
 

@@ -14,7 +14,11 @@ This package has one function and one purpose only: drawing words on tiles! It.I
 
 <div align="center">
   <img src="https://rawgit.com/dirmeier/pixelmap/master/_fig/oh_yeah.png" alt="Drawing" width="400px" />
+</div>
+<div align="center">  
   <img src="https://rawgit.com/dirmeier/pixelmap/master/_fig/heaven.png" alt="Drawing" width="400px" />
+</div>
+<div align="center">
   <img src="https://rawgit.com/dirmeier/pixelmap/master/_fig/useful.png" alt="Drawing" width="400px" />
 </div>
 
