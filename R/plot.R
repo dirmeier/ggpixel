@@ -68,7 +68,6 @@ ggpixel <- function(
   UseMethod("ggpixel")
 }
 
-
 #' @export
 #' @method ggpixel character
 ggpixel.character  <- function(
@@ -95,7 +94,7 @@ ggpixel.character  <- function(
     "inferno" = "B",
     "plasma"  = "C",
     "viridis" = "D",
-    stop("Please choose either magma/plasma/inferno/viridis!", call. = FALSE)
+    stop("Please choose either magma/plasma/inferno/viridis!", call.= FALSE)
   )
 
   .ggpixel(m, na.value, color, aspect.ratio, col.option)
@@ -104,7 +103,6 @@ ggpixel.character  <- function(
 
 #' @import ggplot2
 #' @importFrom viridis scale_fill_viridis
-#' @importFrom dplyr mutate
 #' @importFrom reshape2 melt
 #' @importFrom rlang .data
 .ggpixel <-  function(m,
@@ -113,9 +111,9 @@ ggpixel.character  <- function(
                           aspect.ratio = .1,
                           col.option    = "D")
 {
-  reshape2::melt(m) %>%
-    dplyr::mutate("Var1" = factor(.data$Var1, level=rev(unique(.data$Var1)))) %>%
-    ggplot2::ggplot() +
+  df <- reshape2::melt(m)
+  df$Var1 <- factor(df$Var1, levels = rev(unique(df$Var1)))
+  ggplot2::ggplot(df) +
     ggplot2::geom_tile(ggplot2::aes(
       .data$Var2, .data$Var1, fill = .data$value), color = color) +
     ggplot2::theme_void() +

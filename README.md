@@ -12,10 +12,16 @@ Pixel art with ggplot.
 ## Introduction
 
 This package has one function and one purpose only: drawing words on tiles! It.Is.Awesome!
+
 The usage is straightforward:
 ```r
-  ggpixel("hello there! general kenobi!")
+  ggpixel("hello there! general kenobi!", letter.spacing=2)
 ```
+<div align="center">
+  <img src="https://rawgit.com/dirmeier/ggpixel/master/_fig/general_kenobi.png" alt="Drawing" width="800px" />
+</div>
+
+## More examples
 
 <div align="center">
   <img src="https://rawgit.com/dirmeier/ggpixel/master/_fig/oh_yeah.png" alt="Drawing" width="400px" />

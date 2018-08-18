@@ -1,11 +1,11 @@
 Package: ggpixel
 Type: Package
-Title: Plotting using pixel art in ggplot2
+Title: Pixel art with ggplot
 Version: 0.1.0
 Authors@R: person("Simon", "Dirmeier",
                     email = "simon.dirmeier@web.de", role = c("aut", "cre"))
 Maintainer: Simon Dirmeier <simon.dirmeier@web.de>
-Description: The package only plots a word in a pixelfont as a heatmap.
+Description: The package uses ggplot2 for pixel art.
 URL: https://github.com/dirmeier/ggpixel
 BugReports: https://github.com/dirmeier/ggpixel/issues
 Depends: R(>= 3.4)
@@ -13,12 +13,10 @@ License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
-    datastructures,
     stringr,
     ggplot2,
     reshape2,
     viridis,
-    dplyr,
     rlang
 RoxygenNote: 6.0.1
 Suggests: testthat

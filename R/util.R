@@ -63,7 +63,7 @@ get.letter <- function(symbol)
      stop(paste0(symbol, " could not be found in the font!"), call. = FALSE)
   }
 
-  ggpixel:::font[[idx]]
+  font[[idx]]
 }
 
 

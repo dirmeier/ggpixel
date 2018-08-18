@@ -20,8 +20,7 @@
 
 #' ggpixel
 #'
-#' \emph{ggpixel} is a package that basically plots words or scentences on
-#'  a \code{ggplot2} tile plot.
+#' \emph{ggpixel} is a package for pixel art using \code{ggplot2}.
 #'
 #' @name ggpixel-package
 #' @author Simon Dirmeier | \email{simon.dirmeier@@web.de}

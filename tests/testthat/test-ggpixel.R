@@ -21,6 +21,6 @@
 context("ggpixel")
 
 test_that("ggpixel prints the plot", {
-  p <- ggpixel("hello there")
+  p <- ggpixel(paste0("?.!,", paste0(letters, collapse="")))
   testthat::expect_s3_class(p , "gg")
 })
