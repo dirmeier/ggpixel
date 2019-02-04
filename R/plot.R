@@ -105,11 +105,12 @@ ggpixel.character  <- function(
 #' @importFrom viridis scale_fill_viridis
 #' @importFrom reshape2 melt
 #' @importFrom rlang .data
-.ggpixel <-  function(m,
-                          na.value     = "white",
-                          color        = "grey30",
-                          aspect.ratio = .1,
-                          col.option    = "D")
+.ggpixel <-  function(
+  m,
+  na.value     = "white",
+  color        = "grey30",
+  aspect.ratio = .1,
+  col.option    = "D")
 {
   df <- reshape2::melt(m)
   df$Var1 <- factor(df$Var1, levels = rev(unique(df$Var1)))
