@@ -4,8 +4,7 @@
 [![Project Life](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Build Status](https://travis-ci.org/dirmeier/ggpixel.svg?branch=master)](https://travis-ci.org/dirmeier/ggpixel)
 [![codecov](https://codecov.io/gh/dirmeier/ggpixel/branch/master/graph/badge.svg)](https://codecov.io/gh/dirmeier/ggpixel)
-[![CRAN](http://www.r-pkg.org/badges/version/ggpixel)](https://cran.r-project.org/package=ggpixel) 
-[![CRAN dowbkiad](http://cranlogs.r-pkg.org/badges/ggpixel)](https://cran.r-project.org/package=ggpixel) 
+[![CRAN](http://www.r-pkg.org/badges/version/ggpixel?color=white)](https://cran.r-project.org/package=ggpixel) 
 
 Pixel art with ggplot. 
  
