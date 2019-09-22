@@ -1,7 +1,6 @@
 # ggpixel <img src="https://rawgit.com/dirmeier/ggpixel/master/inst/fig/ggpixel.png" align="right" width="160px"/>
 
 [![Project Status](http://www.repostatus.org/badges/latest/concept.svg)](http://www.repostatus.org/#concept)
-[![Project Life](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Build Status](https://travis-ci.org/dirmeier/ggpixel.svg?branch=master)](https://travis-ci.org/dirmeier/ggpixel)
 [![codecov](https://codecov.io/gh/dirmeier/ggpixel/branch/master/graph/badge.svg)](https://codecov.io/gh/dirmeier/ggpixel)
 [![CRAN](http://www.r-pkg.org/badges/version/ggpixel?color=white)](https://cran.r-project.org/package=ggpixel) 
