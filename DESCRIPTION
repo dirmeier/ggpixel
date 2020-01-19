@@ -15,8 +15,10 @@ LazyData: true
 Imports:
     stringr,
     ggplot2,
+    dplyr,
+    purrr,
     reshape2,
     viridis,
     rlang
-RoxygenNote: 6.0.1
+RoxygenNote: 7.0.2
 Suggests: testthat

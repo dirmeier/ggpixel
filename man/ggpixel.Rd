@@ -4,10 +4,22 @@
 \alias{ggpixel}
 \title{Plot a word on tiles}
 \usage{
-ggpixel(x, noise.difference = 5, color.palette = c("viridis", "magma",
-  "plasma", "inferno"), margin.left = 5, margin.right = 5,
-  margin.top = 10, margin.bottom = 10, letter.spacing = 3,
-  na.value = "white", color = "grey30", aspect.ratio = 0.1)
+ggpixel(
+  x,
+  noise.difference = 5,
+  color.palette = c("viridis", "magma", "plasma", "inferno"),
+  margin.left = 5,
+  margin.right = 5,
+  margin.top = 10,
+  margin.bottom = 10,
+  letter.spacing = 3,
+  overlay = 6,
+  overlay.radius = 20,
+  overlay.color = "white",
+  na.value = "white",
+  color = "grey30",
+  aspect.ratio = 0.1
+)
 }
 \arguments{
 \item{x}{a \code{character} vector}
@@ -29,6 +41,12 @@ from the string}
 from the string}
 
 \item{letter.spacing}{how many pixels are used for spacing two characters}
+
+\item{overlay}{how many corners the overlay will have}
+
+\item{overlay.radius}{how many pixels the radius of the overlay will be}
+
+\item{overlay.color}{the color of the overlay}
 
 \item{na.value}{color used for NAs}
 

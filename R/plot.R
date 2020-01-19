@@ -38,7 +38,10 @@
 #' @param margin.top how many pixels are inserted to the top  from the string
 #' @param margin.bottom how many pixels are inserted to the bottom
 #'   from the string
-#' @param letter.spacing  how many pixels are used for spacing two characters
+#' @param letter.spacing how many pixels are used for spacing two characters
+#' @param overlay how many corners the overlay will have
+#' @param overlay.radius how many pixels the radius of the overlay will be
+#' @param overlay.color the color of the overlay
 #' @param na.value color used for NAs
 #' @param color color used for the lines separating the tiles
 #' @param aspect.ratio \code{ggplot2} \code{aspect.ratio} parameter. Modifies
@@ -61,6 +64,9 @@ ggpixel <- function(
   margin.top       = 10,
   margin.bottom    = 10,
   letter.spacing   = 3,
+  overlay          = 6,
+  overlay.radius   = 20,
+  overlay.color    = "white",
   na.value         = "white",
   color            = "grey30",
   aspect.ratio     = .1)
@@ -79,6 +85,9 @@ ggpixel.character  <- function(
   margin.top       = 10,
   margin.bottom    = 10,
   letter.spacing   = 3,
+  overlay          = 6,
+  overlay.radius   = 20,
+  overlay.color    = "white",
   na.value         = "white",
   color            = "grey30",
   aspect.ratio     = .1)
@@ -97,7 +106,13 @@ ggpixel.character  <- function(
     stop("Please choose either magma/plasma/inferno/viridis!", call.= FALSE)
   )
 
-  .ggpixel(m, na.value, color, aspect.ratio, col.option)
+  if (overlay < 3) {
+    stop("Overlay must be >=3.")
+  }
+  clipping.shape <- get.boundary.shape(overlay, overlay.radius, dim(m))
+
+  .ggpixel(m, clipping.shape, na.value, color, overlay.color,
+           aspect.ratio, col.option)
 }
 
 
@@ -107,16 +122,22 @@ ggpixel.character  <- function(
 #' @importFrom rlang .data
 .ggpixel <-  function(
   m,
-  na.value     = "white",
-  color        = "grey30",
-  aspect.ratio = .1,
-  col.option    = "D")
+  clipping.shape = NULL,
+  na.value       = "white",
+  color          = "grey30",
+  overlay.color  = "white",
+  aspect.ratio   = .1,
+  col.option     = "D")
 {
   df <- reshape2::melt(m)
   df$Var1 <- factor(df$Var1, levels = rev(unique(df$Var1)))
   ggplot2::ggplot(df) +
     ggplot2::geom_tile(ggplot2::aes(
       .data$Var2, .data$Var1, fill = .data$value), color = color) +
+    ggplot2::geom_polygon(
+      ggplot2::aes(x=.data$x, y=.data$y),
+      data=clipping.shape,
+      fill=overlay.color) +
     ggplot2::theme_void() +
     viridis::scale_fill_viridis(option = col.option, na.value = na.value) +
     ggplot2::theme(aspect.ratio = aspect.ratio) +

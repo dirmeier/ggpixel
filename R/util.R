@@ -81,3 +81,42 @@ get.index <- function(symbol)
 
   idx
 }
+
+
+#' @noRd
+#' @importFrom dplyr %>% rename bind_rows slice
+#' @importFrom purrr map_df
+get.boundary.shape <- function(overlay, overlay.radius, plot.dim)
+{
+  # define boundary
+  size.x <- plot.dim[2] + 1
+  size.y <- plot.dim[1] + 1
+
+  rim <- c(
+    0, 0,
+    size.x, 0,
+    size.x, size.y,
+    0, size.y,
+    0, 0
+  ) %>%
+    matrix(ncol=2, byrow=TRUE) %>%
+    as.data.frame %>%
+    rename(x=.data$V1, y=.data$V2)
+
+  # define overlay shape
+  offset.x <- size.x / 2
+  offset.y <- size.y / 2
+
+  shape <- map_df(overlay:1, function(i) {
+    data.frame(
+      x=offset.x + overlay.radius * cos(pi/2+2 * pi * i / overlay),
+      y=offset.y + overlay.radius * sin(pi/2+2 * pi * i / overlay)
+    )
+  })
+  shape <- bind_rows(
+    shape,
+    shape %>% slice(1) # close outline
+  )
+
+  return(bind_rows(rim, shape))
+}
