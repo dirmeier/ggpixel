@@ -39,7 +39,8 @@
 #' @param margin.bottom how many pixels are inserted to the bottom
 #'   from the string
 #' @param letter.spacing how many pixels are used for spacing two characters
-#' @param overlay how many corners the overlay will have
+#' @param overlay how many corners the overlay will have. Per default (NULL)
+#'  no overlay is used
 #' @param overlay.radius how many pixels the radius of the overlay will be
 #' @param overlay.color the color of the overlay
 #' @param na.value color used for NAs
@@ -64,7 +65,7 @@ ggpixel <- function(
   margin.top       = 10,
   margin.bottom    = 10,
   letter.spacing   = 3,
-  overlay          = 6,
+  overlay          = NULL,
   overlay.radius   = 20,
   overlay.color    = "white",
   na.value         = "white",
@@ -85,7 +86,7 @@ ggpixel.character  <- function(
   margin.top       = 10,
   margin.bottom    = 10,
   letter.spacing   = 3,
-  overlay          = 6,
+  overlay          = NULL,
   overlay.radius   = 20,
   overlay.color    = "white",
   na.value         = "white",
@@ -106,10 +107,12 @@ ggpixel.character  <- function(
     stop("Please choose either magma/plasma/inferno/viridis!", call.= FALSE)
   )
 
-  if (overlay < 3) {
+  clipping.shape <- NULL
+  if (!is.null(overlay) && overlay < 3) {
     stop("Overlay must be >=3.")
+  } else if (!is.null(overlay) && overlay >= 3) {
+    clipping.shape <- get.boundary.shape(overlay, overlay.radius, dim(m))
   }
-  clipping.shape <- get.boundary.shape(overlay, overlay.radius, dim(m))
 
   .ggpixel(m, clipping.shape, na.value, color, overlay.color,
            aspect.ratio, col.option)
@@ -131,15 +134,21 @@ ggpixel.character  <- function(
 {
   df <- reshape2::melt(m)
   df$Var1 <- factor(df$Var1, levels = rev(unique(df$Var1)))
-  ggplot2::ggplot(df) +
-    ggplot2::geom_tile(ggplot2::aes(
-      .data$Var2, .data$Var1, fill = .data$value), color = color) +
-    ggplot2::geom_polygon(
-      ggplot2::aes(x=.data$x, y=.data$y),
-      data=clipping.shape,
-      fill=overlay.color) +
+
+  g <- ggplot2::ggplot() +
+    ggplot2::geom_tile(
+      ggplot2::aes(.data$Var2, .data$Var1, fill = .data$value),
+      data=df,
+      color = color) +
     ggplot2::theme_void() +
     viridis::scale_fill_viridis(option = col.option, na.value = na.value) +
     ggplot2::theme(aspect.ratio = aspect.ratio) +
     ggplot2::guides(fill = FALSE)
+  if (!is.null(clipping.shape))
+    g <- g + ggplot2::geom_polygon(
+      ggplot2::aes(x=.data$x, y=.data$y),
+      data=clipping.shape,
+      fill=overlay.color)
+
+  g
 }

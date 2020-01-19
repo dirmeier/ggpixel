@@ -113,10 +113,11 @@ get.boundary.shape <- function(overlay, overlay.radius, plot.dim)
       y=offset.y + overlay.radius * sin(pi/2+2 * pi * i / overlay)
     )
   })
+
   shape <- bind_rows(
     shape,
     shape %>% slice(1) # close outline
   )
 
-  return(bind_rows(rim, shape))
+  bind_rows(rim, shape)
 }
